@@ -1,6 +1,6 @@
 # Topology
 
-Source diagram: build this in draw.io (diagrams.net) with the interface names below, then export `docs/images/topology.png` and keep the `.drawio` file next to it. The Mermaid version renders on GitHub and doubles as a reference.
+Source diagram: `docs/topology.drawio` (draw.io / diagrams.net), exported to `docs/images/topology.png`. The Mermaid version below renders on GitHub and doubles as a reference. NOC-SRV (VLAN 99, HQ-SW2 Fa0/5, added in Phase 4) is not drawn yet; add it when the diagram is next exported.
 
 ```mermaid
 flowchart TB

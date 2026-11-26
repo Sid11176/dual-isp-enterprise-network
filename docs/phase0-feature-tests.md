@@ -1,8 +1,8 @@
-# Phase 0 Feature Tests (scratch file, not committed as a lab file)
+# Phase 0 Feature Tests
 
 Packet Tracer version: 9.0.1.0858   Date: 25 November 2026
 
-Build a throwaway `.pkt` named `scratch-feature-test.pkt`. Do not reuse it for the real lab. Record the result of each test below. If one fails, change the design in `design-decisions.md` before Phase 1.
+Each feature the design depends on was tested in a throwaway Packet Tracer file (`scratch-feature-test.pkt`, not kept in the repo) before any lab work started. Results are below; the one failure (Test 1) changed the design, recorded in `design-decisions.md` (D3, D4, D5, D14, R7). The steps are kept so the tests can be repeated.
 
 | # | Feature | Device | Pass? | Notes |
 |---|---|---|---|---|
@@ -108,11 +108,13 @@ Checks:
 
 Pings from the routers are not a valid check here: the transit and loopback addresses are not advertised, so replies are lost. Real end-to-end failover is tested in Phase 5, once NAT exists.
 
-## Fallbacks if a test fails
+## Fallbacks prepared in case a test failed
+
+Outcome: Test 1 failed and was replaced by Test 1R (passed). No other fallback was needed.
 
 | Failure | Fallback |
 |---|---|
-| Test 1R fails (shorter AS path not preferred, or the floating default does not take over) | Send the `show ip bgp` output; the BGP design in `design-decisions.md` will be reworked before Phase 3 |
+| Test 1R fails (shorter AS path not preferred, or the floating default does not take over) | Rework the BGP design in `design-decisions.md` before Phase 3 |
 | `securityk9` unavailable | Skip Phase 6 and note it as out of scope |
 | LACP does not form | Re-enter with ports shut, then `no shutdown`; last resort `mode on` and note it |
 | HSRP v2 rejected | Use HSRP v1 and group numbers 1 to 5 |

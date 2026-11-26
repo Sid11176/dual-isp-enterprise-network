@@ -1,6 +1,6 @@
 # IP Plan
 
-Status: Phase 0 draft. Addresses marked **(plan)** are my choices; everything else comes straight from the phase guide.
+Status: final for Phase 0 (locked 25 Nov 2026). Addresses marked **(plan)** were added during planning; everything else comes from the original phase guide.
 
 ## Address blocks
 
@@ -28,7 +28,7 @@ HSRP group number = VLAN ID. VIP is the first usable address. R1 = priority 110 
 | 998 | NATIVE | none | | | | | unused, no IP |
 | 999 | PARKING | none | | | | | unused ports, shut |
 
-VLAN names and the VLAN-to-subnet mapping are my assumption. Free for growth: 10.10.1.64 to 10.10.1.255.
+VLAN names and the VLAN-to-subnet mapping were assigned during planning (design-decisions R4). Free for growth: 10.10.1.64 to 10.10.1.255.
 
 ## Branch VLANs
 
@@ -57,6 +57,7 @@ Single router, so no HSRP. The gateway is BR-R1.
 | DNS and DHCP server | 10.10.1.36/28 | 10.10.1.33 |
 | Intranet web server (intranet.local) | 10.10.1.37/28 | 10.10.1.33 |
 | PC-MGMT | 10.10.1.54/28 **(plan)** | 10.10.1.49 |
+| NOC-SRV (syslog, NTP, TFTP; Phase 4) | 10.10.1.55/28 **(plan)** | 10.10.1.49 |
 | HQ-SW1 SVI VLAN 99 | 10.10.1.50 | 10.10.1.49 |
 | HQ-SW2 SVI VLAN 99 | 10.10.1.51 | 10.10.1.49 |
 | BR-SW SVI VLAN 199 **(plan)** | 10.10.2.194 | 10.10.2.193 |
@@ -106,7 +107,7 @@ No ISP sends a default route (Packet Tracer has no `default-originate`).
 | HQ-R1 to 8.8.8.8 | 64496 64498 (2 hops) | not learned by HQ-R1 | ISP-A (HQ-R1 is the HSRP active router) |
 | HQ-R2 to 8.8.8.8 | not learned by HQ-R2 | 64497 64499 64498 (3 hops) | ISP-B, used only after ISP-A is lost (traffic arrives via the floating default on HQ-R1) |
 
-## Switch port map (suggested)
+## Switch port map (planned; Phase 1 cabling must match this table, or update it)
 
 | Device | Port | Connects to | Mode / VLAN |
 |---|---|---|---|
@@ -117,6 +118,7 @@ No ISP sends a default route (Packet Tracer has no `default-originate`).
 | HQ-SW2 | Gi0/1 | HQ-R2 Gi0/0 | trunk |
 | HQ-SW2 | Fa0/1 / Fa0/2 | PC-USER2 / PC-IT | access 10 / 30 |
 | HQ-SW2 | Fa0/3 / Fa0/4 | PC-GUEST / PC-MGMT | access 40 / 99 |
+| HQ-SW2 | Fa0/5 | NOC-SRV (Phase 4) | access 99 |
 | BR-SW | Gi0/1 | BR-R1 Gi0/0 | trunk |
 | BR-SW | Fa0/1 / Fa0/2 | PC-BR-STAFF / PC-BR-GUEST | access 110 / 140 |
 | BR-SW | Fa0/3 / Fa0/4 | AP-STAFF / AP-GUEST (Phase 7) | access 110 / 140 |
@@ -124,5 +126,5 @@ No ISP sends a default route (Packet Tracer has no `default-originate`).
 ## Checks done on this plan
 
 - No overlapping subnets. All HQ subnets sit inside 10.10.0.0/23; branch is outside it.
-- Every static host falls inside its VLAN's usable range.
+- Every static host falls inside its VLAN's usable range (VLAN 99: .54 and .55 sit inside .49 to .62).
 - Six provider /30s and the web segment do not overlap.

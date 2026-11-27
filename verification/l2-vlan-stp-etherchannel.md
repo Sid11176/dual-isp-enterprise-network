@@ -7,7 +7,7 @@
 | Topology file | `pkt/v1-layer2.pkt` |
 | Configs | `configs/HQ-SW1.txt`, `configs/HQ-SW2.txt`, `configs/BR-SW.txt` |
 | Devices | HQ-SW1, HQ-SW2, BR-SW (+ PC-USER1, PC-USER2, PC-ADMIN, PC-IT, PC-GUEST) |
-| Commit | `feat: add layer 2 foundation` (hash: ) |
+| Commit | `feat: add layer 2 foundation` (hash: a48640f) |
 
 ## 1. Result summary
 

@@ -4,15 +4,15 @@ A dual-homed, two-site enterprise network built in Cisco Packet Tracer. An HQ an
 
 ![Topology](docs/images/topology.png)
 
-> **Status:** Phase 0 complete (25 Nov 2026). Phase 1 is next. Update the table below as each phase is finished.
+> **Status:** Phase 2 complete (27 Nov 2026). Phase 3 is next. Update the table below as each phase is finished.
 
 ## Project status
 
 | Phase | Scope | Status |
 |---|---|---|
 | 0 | IP plan, topology, design decisions, feature tests | Complete |
-| 1 | VLANs, trunks, LACP EtherChannel, RSTP | Not started |
-| 2 | HSRP gateways, OSPF | Not started |
+| 1 | VLANs, trunks, LACP EtherChannel, RSTP | Complete |
+| 2 | HSRP gateways, OSPF | Complete |
 | 3 | ISP edge, eBGP, NAT, DHCP, DNS | Not started |
 | 4 | SSH hardening, ACL policy, port security, syslog/NTP/TFTP | Not started |
 | 5 | Failover tests, incident reports, runbooks | Not started |

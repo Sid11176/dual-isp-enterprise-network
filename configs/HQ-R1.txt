@@ -1,0 +1,149 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname HQ-R1
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FTX152498TC-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.10.255.1 255.255.255.255
+ ip ospf 1 area 0
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 10.10.0.2 255.255.255.128
+ ip ospf 1 area 0
+ standby version 2
+ standby 10 ip 10.10.0.1
+ standby 10 priority 110
+ standby 10 preempt
+!
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 10.10.0.130 255.255.255.192
+ ip ospf 1 area 0
+ standby version 2
+ standby 20 ip 10.10.0.129
+ standby 20 priority 110
+ standby 20 preempt
+!
+interface GigabitEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 10.10.0.194 255.255.255.224
+ ip ospf 1 area 0
+ standby version 2
+ standby 30 ip 10.10.0.193
+ standby 30 priority 110
+ standby 30 preempt
+!
+interface GigabitEthernet0/0.40
+ encapsulation dot1Q 40
+ ip address 10.10.1.2 255.255.255.224
+ ip ospf 1 area 0
+ standby version 2
+ standby 40 ip 10.10.1.1
+ standby 40 priority 110
+ standby 40 preempt
+!
+interface GigabitEthernet0/0.50
+ encapsulation dot1Q 50
+ ip address 10.10.1.34 255.255.255.240
+ ip ospf 1 area 0
+ standby version 2
+ standby 50 ip 10.10.1.33
+ standby 50 priority 110
+ standby 50 preempt
+!
+interface GigabitEthernet0/0.99
+ encapsulation dot1Q 99
+ ip address 10.10.1.52 255.255.255.240
+ ip ospf 1 area 0
+ standby version 2
+ standby 99 ip 10.10.1.49
+ standby 99 priority 110
+ standby 99 preempt
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/2
+ ip address 10.10.255.65 255.255.255.252
+ ip ospf network point-to-point
+ ip ospf priority 1
+ ip ospf 1 area 0
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 1
+ log-adjacency-changes
+ passive-interface default
+ no passive-interface GigabitEthernet0/2
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
